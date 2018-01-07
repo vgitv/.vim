@@ -1,0 +1,6 @@
+Ce dossier contient des fichiers nommés de la forme :
+langage.vim (en fonction du langage auquel il s'applique).
+
+Cela peut permettre de définir des comportement de vim en fonction du langage édité. Typiquement, les lignes du .vimrc qui sont propre à un langage en particulier doivent être mises dans un fichier de ce dossier et non dans le .vimrc.
+
+Par exemple, si je veux que ctrl + K commente une ligne, en C le commentaire est //, en fortran !, en python # donc pour mapper ctrl K je ne le fais pas dans le .vimrc mais d'une manière différente pour chaque langage dans les fichiers c.vim, fortran.vim, python.vim.

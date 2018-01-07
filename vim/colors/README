@@ -1,0 +1,3 @@
+Tous les fichier de coloration syntaxique. A trouver sur internet. Pour choisir une coloration dans vim, éditer le .vimrc et changer la ligne
+colorscheme coloration
+(sans l'extension .vim)

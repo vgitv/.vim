@@ -1,0 +1,1 @@
+Ici c'est la même chose que dans ~/.vim mais les fichiers du dossier after sont lus après. Cela peut permettre de réécrire certaines règles.

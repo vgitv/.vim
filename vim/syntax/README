@@ -1,0 +1,7 @@
+Dans ce dossier on peut placer des fichiers qui définissent des règles pour la coloration syntasique propre à un langage. Le fichier s'appelle à priori :
+
+langage.vim
+
+en fonction du langage pour lequel la coloration syntaxique s'applique.
+
+Les fichiers de colorations syntaxique sont commun à tous les langages et sont placés dans le dossier ~/.vim/colors/   Ici, je crois que ce sont des règles supplémentaires en fonction du langage quand certaines colorations ne sont pas gérées pour un langage en particulier.

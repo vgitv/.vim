@@ -50,3 +50,5 @@ inoremap $" #include ""<Esc>i
 
 inoremap $f for (; <++>; <++>)<CR>{<CR><++><CR>}<Esc>3k_4la
 inoremap $w while ()<CR>{<CR><++><CR>}<Esc>3k_6la
+
+nnoremap <F8> p==$xo{<CR>}<Esc>2k0w

@@ -4,6 +4,12 @@ if (&ft != 'cpp')
 endif
 "
 
+" chaîne commentaire et longueur
+let comment = "//"
+let lencomm = strlen(comment)
+
+" local leader
+let maplocalleader = "$"
 
 
 " ---------------------------------------------------------------------
@@ -42,13 +48,13 @@ nmap <C-J> _xx:w<CR>
 inoremap <Tab> <Esc>/<++><CR>"_c4l
 
 " classe
-inoremap $c class<CR>{<CR><++><CR>};<Esc>3kA<Space>
+inoremap <LocalLeader>c class<CR>{<CR><++><CR>};<Esc>3kA<Space>
 
 " include
-inoremap $< #include <><Esc>i
-inoremap $" #include ""<Esc>i
+inoremap <LocalLeader>< #include <><Esc>i
+inoremap <LocalLeader>" #include ""<Esc>i
 
-inoremap $f for (; <++>; <++>)<CR>{<CR><++><CR>}<Esc>3k_4la
-inoremap $w while ()<CR>{<CR><++><CR>}<Esc>3k_6la
+inoremap <LocalLeader>f for (; <++>; <++>)<CR>{<CR><++><CR>}<Esc>3k_4la
+inoremap <LocalLeader>w while ()<CR>{<CR><++><CR>}<Esc>3k_6la
 
 nnoremap <F8> p==$xo{<CR>}<Esc>2k0w

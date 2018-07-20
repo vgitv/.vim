@@ -12,6 +12,14 @@ if exists("did_load_filetypes")
     finish
 endif
 augroup filetypedetect
-    au! BufRead,BufNewFile *.gnu setfiletype gnuplot
-    au! BufRead,BufNewFile *.tex setfiletype tex
+    autocmd!
+    autocmd! BufRead,BufNewFile *.gnu setfiletype gnuplot
+    autocmd! BufRead,BufNewFile *.tex setfiletype tex
+    autocmd! BufRead,BufNewFile *.mx  setfiletype maxima
+    autocmd! BufRead,BufNewFile *.pn  setfiletype potion
+    autocmd! BufRead,BufNewFile *.reg setfiletype pcre
+    autocmd! BufRead,BufNewFile *.vf  setfiletype vfortran
+    autocmd! BufRead,BufNewFile *.vmd setfiletype vmarkdown
+    autocmd! BufRead,BufNewFile *.zsh* setfiletype zsh
+    autocmd! BufRead,BufNewFile *.vl  setfiletype vlanguage
 augroup END

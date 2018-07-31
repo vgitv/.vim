@@ -30,105 +30,125 @@ endif
 
 
 " COLORS FOR GUI {{{
-" highlight Boolean         guifg=#AE81FF
-" highlight Character       guifg=#E6DB74
-" highlight Number          guifg=#AE81FF
-" highlight String          guifg=#E6DB74
-" highlight Conditional     guifg=#F92672               gui=bold
-" highlight Constant        guifg=#AE81FF               gui=bold
-" highlight Cursor          guifg=#000000 guibg=#F8F8F0
-" highlight Debug           guifg=#BCA3A3               gui=bold
-" highlight Define          guifg=#66D9EF
-" highlight Delimiter       guifg=#8F8F8F
-" highlight DiffAdd                       guibg=#13354A
-" highlight DiffChange      guifg=#89807D guibg=#4C4745
-" highlight DiffDelete      guifg=#960050 guibg=#1E0010
-" highlight DiffText                      guibg=#4C4745 gui=italic,bold
-" 
-" highlight Directory       guifg=#A6E22E               gui=bold
-" highlight Error           guifg=#960050 guibg=#1E0010
-" highlight ErrorMsg        guifg=#F92672 guibg=#232526 gui=bold
-" highlight Exception       guifg=#A6E22E               gui=bold
-" highlight Float           guifg=#AE81FF
-" highlight FoldColumn      guifg=#465457 guibg=#000000
-" highlight Folded          guifg=#465457 guibg=#000000
-" highlight Function        guifg=#A6E22E
-" highlight Identifier      guifg=#FD971F
-" highlight Ignore          guifg=#808080 guibg=bg
-" highlight IncSearch       guifg=#C4BE89 guibg=#000000
-" 
-" highlight Keyword         guifg=#F92672               gui=bold
-" highlight Label           guifg=#E6DB74               gui=none
-" highlight Macro           guifg=#C4BE89               gui=italic
-" highlight SpecialKey      guifg=#66D9EF               gui=italic
-" 
-" highlight MatchParen      guifg=#000000 guibg=#FD971F gui=bold
-" highlight ModeMsg         guifg=#E6DB74
-" highlight MoreMsg         guifg=#E6DB74
-" highlight Operator        guifg=#F92672
-" 
-" " complete menu
-" highlight Pmenu           guifg=#66D9EF guibg=#000000
-" highlight PmenuSel                      guibg=#808080
-" highlight PmenuSbar                     guibg=#080808
-" highlight PmenuThumb      guifg=#66D9EF
-" 
-" highlight PreCondit       guifg=#A6E22E               gui=bold
-" highlight PreProc         guifg=#A6E22E
-" highlight Question        guifg=#66D9EF
-" highlight Repeat          guifg=#F92672               gui=bold
-" highlight Search          guifg=#FFFFFF guibg=#455354
-" " ghlightmarks column
-" highlight SignColumn      guifg=#A6E22E guibg=#232526
-" highlight SpecialChar     guifg=#F92672               gui=bold
-" highlight SpecialComment  guifg=#465457               gui=bold
-" highlight Special         guifg=#66D9EF guibg=bg      gui=italic
-" highlight SpecialKey      guifg=#888A85               gui=italic
-" if has("spell")
-"     highlight SpellBad    guisp=#FF0000 gui=undercurl
-"     highlight SpellCap    guisp=#7070F0 gui=undercurl
-"     highlight SpellLocal  guisp=#70F0F0 gui=undercurl
-"     highlight SpellRare   guisp=#FFFFFF gui=undercurl
-" endif
-" highlight Statement       guifg=#F92672               gui=bold
-" highlight StatusLine      guifg=#455354 guibg=fg
-" highlight StatusLineNC    guifg=#808080 guibg=#080808
-" highlight StorageClass    guifg=#FD971F               gui=italic
-" highlight Structure       guifg=#66D9EF
-" highlight Tag             guifg=#F92672               gui=italic
-" highlight Title           guifg=#ef5939
-" highlight Todo            guifg=#FFFFFF guibg=bg      gui=bold
-" 
-" highlight Typedef         guifg=#66D9EF
-" highlight Type            guifg=#66D9EF               gui=none
-" highlight Underlined      guifg=#808080               gui=underline
-" 
-" highlight VertSplit       guifg=#808080 guibg=#080808 gui=bold
-" highlight VisualNOS                     guibg=#403D3D
-" highlight Visual                        guibg=#403D3D
-" highlight WarningMsg      guifg=#FFFFFF guibg=#333333 gui=bold
-" highlight WildMenu        guifg=#66D9EF guibg=#000000
-" 
-" if s:vcolor_original == 1
-"     highlight Normal          guifg=#F8F8F2 guibg=#272822
-"     highlight Comment         guifg=#75715E
-"     highlight CursorLine                    guibg=#3E3D32
-"     highlight CursorColumn                  guibg=#3E3D32
-"     highlight LineNr          guifg=#BCBCBC guibg=#3B3A32
-"     highlight NonText         guifg=#BCBCBC guibg=#3B3A32
-" else
-"     highlight Normal          guifg=#F8F8F2 guibg=#1B1D1E
-"     highlight Comment         guifg=#465457
-"     highlight CursorLine                    guibg=#293739
-"     highlight CursorColumn                  guibg=#293739
-"     highlight LineNr          guifg=#BCBCBC guibg=#232526
-"     highlight NonText         guifg=#BCBCBC guibg=#232526
-" end
+" -----------------------------------------------------------------------------------------------------------
+" Dans l'ordre de :help group-name
+" highlight Comment         guifg=#75715E
+highlight Comment         guifg=#465457
+
+highlight Constant        guifg=#AE81FF               gui=bold
+highlight String          guifg=#E6DB74
+highlight Character       guifg=#E6DB74
+highlight Number          guifg=#AE81FF
+highlight Boolean         guifg=#AE81FF
+highlight Float           guifg=#AE81FF
+
+highlight Identifier      guifg=#FD971F
+highlight Function        guifg=#A6E22E
+
+highlight Statement       guifg=#F92672               gui=bold
+highlight Conditional     guifg=#F92672               gui=bold
+highlight Repeat          guifg=#F92672               gui=bold
+highlight Label           guifg=#E6DB74               gui=none
+highlight Operator        guifg=#F92672
+highlight Keyword         guifg=#F92672               gui=bold
+highlight Exception       guifg=#A6E22E               gui=bold
+
+highlight PreProc         guifg=#A6E22E
+highlight Include         guifg=#66D9EF
+highlight Define          guifg=#66D9EF
+highlight Macro           guifg=#C4BE89               gui=italic
+highlight PreCondit       guifg=#A6E22E               gui=bold
+
+highlight Type            guifg=#66D9EF               gui=none
+highlight StorageClass    guifg=#FD971F               gui=italic
+highlight Structure       guifg=#66D9EF
+highlight Typedef         guifg=#66D9EF
+
+highlight Special         guifg=#66D9EF guibg=bg      gui=italic
+highlight SpecialChar     guifg=#F92672               gui=bold
+highlight Tag             guifg=#F92672               gui=italic
+highlight Delimiter       guifg=#8F8F8F
+highlight SpecialComment  guifg=#465457               gui=bold
+highlight Debug           guifg=#BCA3A3               gui=bold
+
+highlight Underlined      guifg=#808080               gui=underline
+
+highlight Ignore          guifg=#808080 guibg=bg
+
+highlight Error           guifg=#960050 guibg=#1E0010
+
+highlight Todo            guifg=#FFFFFF guibg=bg      gui=bold
+" -----------------------------------------------------------------------------------------------------------
+
+
+
+highlight Cursor          guifg=#000000 guibg=#F8F8F0
+highlight DiffAdd                       guibg=#13354A
+highlight DiffChange      guifg=#89807D guibg=#4C4745
+highlight DiffDelete      guifg=#960050 guibg=#1E0010
+highlight DiffText                      guibg=#4C4745 gui=italic,bold
+
+highlight Directory       guifg=#A6E22E               gui=bold
+highlight ErrorMsg        guifg=#F92672 guibg=#232526 gui=bold
+highlight FoldColumn      guifg=#465457 guibg=#000000
+highlight Folded          guifg=#465457 guibg=#000000
+highlight IncSearch       guifg=#C4BE89 guibg=#000000
+
+highlight SpecialKey      guifg=#66D9EF               gui=italic
+
+highlight MatchParen      guifg=#000000 guibg=#FD971F gui=bold
+highlight ModeMsg         guifg=#E6DB74
+highlight MoreMsg         guifg=#E6DB74
+
+" complete menu
+highlight Pmenu           guifg=#66D9EF guibg=#000000
+highlight PmenuSel                      guibg=#808080
+highlight PmenuSbar                     guibg=#080808
+highlight PmenuThumb      guifg=#66D9EF
+
+highlight Question        guifg=#66D9EF
+highlight Search          guifg=#FFFFFF guibg=#455354
+" ghlightmarks column
+highlight SignColumn      guifg=#A6E22E guibg=#232526
+highlight SpecialKey      guifg=#888A85               gui=italic
+if has("spell")
+    highlight SpellBad    guisp=#FF0000 gui=undercurl
+    highlight SpellCap    guisp=#7070F0 gui=undercurl
+    highlight SpellLocal  guisp=#70F0F0 gui=undercurl
+    highlight SpellRare   guisp=#FFFFFF gui=undercurl
+endif
+highlight StatusLine      guifg=#455354 guibg=fg
+highlight StatusLineNC    guifg=#808080 guibg=#080808
+highlight Title           guifg=#ef5939
+
+
+highlight VertSplit       guifg=#808080 guibg=#080808 gui=bold
+highlight VisualNOS                     guibg=#403D3D
+highlight Visual                        guibg=#403D3D
+highlight WarningMsg      guifg=#FFFFFF guibg=#333333 gui=bold
+highlight WildMenu        guifg=#66D9EF guibg=#000000
+
+if s:vcolor_original == 1
+    highlight Normal          guifg=#F8F8F2 guibg=#272822
+    highlight CursorLine                    guibg=#3E3D32
+    highlight CursorColumn                  guibg=#3E3D32
+    highlight LineNr          guifg=#BCBCBC guibg=#3B3A32
+    highlight NonText         guifg=#BCBCBC guibg=#3B3A32
+else
+    highlight Normal          guifg=#F8F8F2 guibg=#1B1D1E
+    highlight CursorLine                    guibg=#293739
+    highlight CursorColumn                  guibg=#293739
+    highlight LineNr          guifg=#BCBCBC guibg=#232526
+    highlight NonText         guifg=#BCBCBC guibg=#232526
+end
 " }}}
+
+
 
 "
 " Support for 256-color terminal
 "
+" COLORS FOR TERM {{{
 if &t_Co > 255
     " -------------------------------------------------------------------------------------------------------
     " Dans l'ordre de :help group-name
@@ -152,7 +172,6 @@ if &t_Co > 255
     highlight Keyword         ctermfg=161                 cterm=bold
     highlight Exception       ctermfg=118                 cterm=bold
 
-    " highlight PreProc         ctermfg=118  
     highlight PreProc         ctermfg=118  
     highlight Include         ctermfg=193
     highlight Define          ctermfg=193
@@ -229,3 +248,4 @@ if &t_Co > 255
     highlight LineNr          ctermfg=250   ctermbg=234
     highlight NonText         ctermfg=232   ctermbg=234
 end
+" }}}

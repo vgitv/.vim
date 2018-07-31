@@ -1,15 +1,15 @@
-"set spell spelllang=fr spell
-set colorcolumn&
-set wrap
-set linebreak
-"set background=light
+"setlocal spell spelllang=fr spell
+setlocal colorcolumn&
+setlocal wrap
+setlocal linebreak
+"setlocal background=light
 "colorscheme solarized
 "colorscheme gruvbox
 "
 let s:balise = "<!!>"
 let s:n = strlen(s:balise)
-set tabstop=2
-set shiftwidth=2
+setlocal tabstop=2
+setlocal shiftwidth=2
 let g:tex_flavor='latex'
 
 

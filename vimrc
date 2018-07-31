@@ -10,57 +10,72 @@
 " properly set to work with the Vim-related packages available in Debian.
 runtime! debian.vim
 
-" Uncomment the next line to make Vim more Vi-compatible
-" NOTE : debian.vim sets 'nocompatible'.  Setting 'compatible' changes numerous
-" options, so any other options should be set AFTER setting 'compatible'.
-"set compatible
-set nocompatible        " default vim-like environement (!= vi)
-
-" Vim5 and later versions support syntax highlighting. Uncommenting the next
-" line enables syntax highlighting by default.
-if has("syntax")
-    syntax on
-endif
-
-" Uncomment the following to have Vim jump to the last position when
-" reopening a file
-"if has("autocmd")
-"  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-"endif
-
-" Uncomment the following to have Vim load indentation rules and plugins
-" according to the detected filetype.
-if has("autocmd")
-    filetype plugin indent on
-endif
-
-" Source a global configuration file if available
-" if filereadable("/etc/vim/vimrc.local")
-"     source /etc/vim/vimrc.local
-" endif
-
-execute pathogen#infect()
-
-" nerdtree
-augroup nerdtreeGroup
-    autocmd!
-    autocmd VimEnter * NERDTree | wincmd l
-augroup END
-
-" powerline
-" set rtp+=$HOME/.local/lib/python3.6/site-packages/powerline/bindings/vim/
-
-augroup vimGroup
-    autocmd!
-    " ne pas insérer automatique un commentaire après une ligne commentée
-    autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-augroup END
 
 
 " ===========================================================================================================
 " FUNCTIONS {{{
 " ===========================================================================================================
+
+" -----------------------------------------------------------------------------------------------------------
+" donne le nom de la branche (1ere version)
+" -----------------------------------------------------------------------------------------------------------
+" function GetBranchName()
+"     let l:branch = ''
+" 
+"     " À cet emplacement, est-on dans un dépot git ?
+"     let l:loc = expand('%:p:h')
+"     execute 'cd' . l:loc
+"     let l:cmd = 'git rev-parse --is-inside-work-tree'
+"     let l:git = systemlist(l:cmd)[0]
+" 
+"     " Le fichier est-il tracked ?
+"     let l:cmd = 'git ls-files --error-unmatch ' . expand('%:t')
+"     let l:tracked = systemlist(l:cmd)[0]
+" 
+"     if l:git ==? 'true'
+"         " on est dans un repo git
+"         let l:branch = systemlist('git symbolic-ref --short HEAD')[0]
+"         if l:tracked ==? expand('%:t')
+"             " tracked
+"             let l:branch = l:branch . ' ▴'
+"         else
+"             " untracked
+"             let l:branch = l:branch . ' ▾'
+"         endif
+"     else
+"         " on n'es pas dans un repo git
+"         let l:branch = ''
+"     endif
+" 
+"     return l:branch
+" endfunction
+
+" -----------------------------------------------------------------------------------------------------------
+" donne le nom de la branche (2eme version)
+" -----------------------------------------------------------------------------------------------------------
+function GetBranchName()
+    let l:branch = ''
+
+    " let l:cmd = '~/.vim/vgit ' . expand('%:p:h') . ' ' . expand('%:t')
+    " let l:git = systemlist(l:cmd)
+
+    " if l:git[0] ==? 'true'
+    "     let l:branch = l:git[1]
+    "     if l:git[2] ==? 'true'
+    "         let l:branch = l:branch . ' ▴'
+    "     else
+    "         let l:branch = l:branch . ' ▾'
+    "     endif
+    " else
+    "     let l:branch = ''
+    " endif
+
+    return l:branch
+endfunction
+
+" -----------------------------------------------------------------------------------------------------------
 " Display highlight groups (see :help highlight-groups).
+" -----------------------------------------------------------------------------------------------------------
 function HiGrp()
     echohl ColorColumn | echo "ColorColumn"
     echohl Conceal | echo "Conceal"
@@ -110,7 +125,9 @@ function HiGrp()
     echohl None
 endfunction
 
-"
+" -----------------------------------------------------------------------------------------------------------
+" toggle fold column
+" -----------------------------------------------------------------------------------------------------------
 function FoldColumnToggle()
     if &foldcolumn
         set foldcolumn=0
@@ -122,8 +139,10 @@ function FoldColumnToggle()
 endfunction
 
 
+" -----------------------------------------------------------------------------------------------------------
+" toggle quick fix window
+" -----------------------------------------------------------------------------------------------------------
 let g:quickfix_is_open=0
-
 function QuickfixToggle()
     if g:quickfix_is_open
         cclose
@@ -136,42 +155,110 @@ function QuickfixToggle()
     endif
 endfunction
 
+" -----------------------------------------------------------------------------------------------------------
 " Nombre total de buffers ouverts.
+" -----------------------------------------------------------------------------------------------------------
 function TotBuf()
     return len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
 endfunction
 
+" -----------------------------------------------------------------------------------------------------------
+" Status line
+" -----------------------------------------------------------------------------------------------------------
 function MyStatusLine()
     if mode() ==? 'i'
-        let my_mode = '%2* INSERT %* '
+        let my_mode = '%2* INSERT %*  '
     elseif mode() ==? 'v'
-        let my_mode = '%3* VISUAL %* '
+        let my_mode = '%3* VISUAL %*  '
     elseif mode() ==? 'R'
-        let my_mode = '%4* REPLACE %* '
+        let my_mode = '%4* REPLACE %*  '
     else
-        let my_mode = '%1* NORMAL %* '
+        let my_mode = '%1* NORMAL %*  '
     endif
+
+    let l:sep1 = " \u276f  "
+    let l:sep2 = " \u276e  "
 
     " mode
     let line = my_mode
     " buffer number / total buffers & modified flag
-    let line = line . ' %n/%{TotBuf()} '
-    " modified flag
-    let line = line . ' %M '
-    " path to file
-    let line = line . ' %f '
-    " file type
-    let line = line . ' %Y '
+    let line = line . '%n/%{TotBuf()}'
+    " branch name
+    if g:branch_name !=? ''
+        let line = line . l:sep1
+        let line = line . ' %{g:branch_name}'
+        "Ue0a0') # 
+    endif
+    " modified flag & path to file
+    let line = line . l:sep1
+    let line = line . '%M%<%f '
 
     " right side
     let line = line . '%='
-    " line number / total lines
-    let line = line . ' %4l/%-4L '
+    " file type
+    let line = line . '%Y'
+    " line number / total lines (percentage)
+    let line = line . l:sep2
+    let line = line . '%l/%L (%p%%)'
     " column number
-    let line = line . ' %-3v '
+    let line = line . l:sep2
+    let line = line . '%-3v'
 
     return line
 endfunction
+" }}}
+
+
+
+" ===========================================================================================================
+" MISCELLANEOUS {{{
+" ===========================================================================================================
+
+" Uncomment the next line to make Vim more Vi-compatible
+" NOTE : debian.vim sets 'nocompatible'.  Setting 'compatible' changes numerous
+" options, so any other options should be set AFTER setting 'compatible'.
+"set compatible
+set nocompatible        " default vim-like environement (!= vi)
+
+" Vim5 and later versions support syntax highlighting. Uncommenting the next
+" line enables syntax highlighting by default.
+if has("syntax")
+    syntax on
+endif
+
+" Uncomment the following to have Vim jump to the last position when
+" reopening a file
+" if has("autocmd")
+"   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+" endif
+
+" Uncomment the following to have Vim load indentation rules and plugins
+" according to the detected filetype.
+if has("autocmd")
+    filetype plugin indent on
+endif
+
+" Source a global configuration file if available
+" if filereadable("/etc/vim/vimrc.local")
+"     source /etc/vim/vimrc.local
+" endif
+
+execute pathogen#infect()
+
+" nerdtree
+augroup nerdtreeGroup
+    autocmd!
+    autocmd VimEnter * NERDTree | wincmd l
+augroup END
+
+" powerline
+" set rtp+=$HOME/.local/lib/python3.6/site-packages/powerline/bindings/vim/
+augroup vimGroup
+    autocmd!
+    " ne pas insérer automatique un commentaire après une ligne commentée
+    autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+    autocmd BufEnter * let g:branch_name = GetBranchName()
+augroup END
 " }}}
 
 
@@ -310,6 +397,10 @@ nnoremap <C-N> o<Esc>
 nnoremap <CR> :bnext<CR>
 nnoremap <BS> :bprevious<CR>
 
+" modifier la hauteur de la fenêtre
+nnoremap + :resize +1<CR>
+nnoremap - :resize -1<CR>
+
 
 
 " -----------------------------------------------------------------------------------------------------------
@@ -353,7 +444,7 @@ nnoremap <Leader>w mzviw<Esc>_/<C-R>=@*<CR><CR>`z:set hlsearch<CR>
 " sélectionner un mot
 nnoremap <Leader><space> viw
 
-" entourer" de " ' ( [ {
+" entourer" de " ' ( [ { _ *
 nnoremap <Leader>" mzviw<Esc>a"<Esc>bi"<Esc>`zl
 nnoremap <Leader>' mzviw<Esc>a'<Esc>bi'<Esc>`zl
 nnoremap <Leader>( mzviw<Esc>a)<Esc>bi(<Esc>`zl

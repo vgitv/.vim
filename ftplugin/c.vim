@@ -36,7 +36,7 @@ let lencomm = strlen(comment)
 " fichier %.cpp vide.
 "
 " Pour voir l'aide de vim    :h filename-modifierse
-map <F3> :e %:t:s?.h$?.X123X?:s?.c$?.h?:s?.X123X$?.c?<CR>:set filetype=c<CR>
+map <F3> :e %:t:s?.h$?.X123X?:s?.c$?.h?:s?.X123X$?.c?<CR>:setlocal filetype=c<CR>
 
 " pour commenter une ligne en C et sauvegarder
 nmap <C-K> _i//<ESC>:w<CR>

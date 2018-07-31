@@ -36,7 +36,7 @@ let maplocalleader = "$"
 " du C ou C++)
 "
 " Pour voir l'aide de vim    :h filename-modifiers
-map <F3> :e %:t:s?.h$?.X123X?:s?.cpp$?.h?:s?.X123X$?.cpp?<CR>
+" map <F3> :e %:t:s?.h$?.X123X?:s?.cpp$?.h?:s?.X123X$?.cpp?<CR>
 
 " pour commenter une ligne en C et sauvegarder
 nmap <C-K> _i//<ESC>:w<CR>
@@ -58,3 +58,6 @@ inoremap <LocalLeader>f for (; <++>; <++>)<CR>{<CR><++><CR>}<Esc>3k_4la
 inoremap <LocalLeader>w while ()<CR>{<CR><++><CR>}<Esc>3k_6la
 
 nnoremap <F8> p==$xo{<CR>}<Esc>2k0w
+
+" nnoremap <F3> :call cpp#SwitchSourceHeader()<CR>
+nnoremap <F3> :call cpp#SplitSourceHeader()<CR>

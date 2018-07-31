@@ -22,4 +22,5 @@ augroup filetypedetect
     autocmd! BufRead,BufNewFile *.vmd setfiletype vmarkdown
     autocmd! BufRead,BufNewFile *.zsh* setfiletype zsh
     autocmd! BufRead,BufNewFile *.vl  setfiletype vlanguage
+    autocmd! BufRead,BufNewFile *.nml  setfiletype namelist
 augroup END

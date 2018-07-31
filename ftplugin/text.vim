@@ -1,4 +1,4 @@
-"set spell spelllang=fr spell
-set colorcolumn&
-set wrap
-set linebreak
+"setlocal spell spelllang=fr spell
+setlocal colorcolumn&
+setlocal wrap
+setlocal linebreak

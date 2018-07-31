@@ -1,0 +1,28 @@
+#!/bin/bash
+
+loc=$1
+file=$2
+
+cd ${loc}
+
+# écrit true si on est dans un repo
+is_repo=`git rev-parse --is-inside-work-tree 2> /dev/null`
+
+if [[ ${is_repo} = 'true' ]]; then
+    branch_name=`git symbolic-ref --short HEAD`
+
+    temp=`git ls-files ${file}`
+    if [[ ${temp} = ${file} ]]; then
+        is_tracked='true'
+    else
+        is_tracked='false'
+    fi
+else
+    is_repo='false'
+    branch_name='none'
+    is_tracked='false'
+fi
+
+echo ${is_repo}
+echo ${branch_name}
+echo ${is_tracked}

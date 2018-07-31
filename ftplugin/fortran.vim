@@ -10,7 +10,7 @@ let lencomm = strlen(comment)
 let maplocalleader = "$"
 
 " source le fichier commun
-source ~/.vim/ftplugin/all.vim
+source $HOME/.vim/ftplugin/all.vim
 
 
 

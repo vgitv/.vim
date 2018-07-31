@@ -1,8 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/home/valentin/téléchargements/saveconf/.vim'
-let g:netrw_dirhist_2='/home/valentin/.vim'
-let g:netrw_dirhist_3='/home/valentin/test/.git'
-let g:netrw_dirhist_4='/home/valentin/.vconfig'
-let g:netrw_dirhist_5='/home/valentin/.vim/indent'
-let g:netrw_dirhist_6='/home/valentin/.vim/spell'

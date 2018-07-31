@@ -259,6 +259,16 @@ augroup vimGroup
     autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
     autocmd BufEnter * let g:branch_name = GetBranchName()
 augroup END
+
+" Unix or windows ? Config file location.
+let temp = $HOME . '/.vim'
+if isdirectory(temp)
+    " Unix
+    let g:CONF = $HOME . '/.vim'
+else
+    " Windows
+    let g:CONF = $HOME . '/vimfiles'
+endif
 " }}}
 
 

@@ -5,7 +5,8 @@ let lencomm = strlen(comment)
 let maplocalleader = "$"
 
 " source le fichier commun
-source $HOME/.vim/ftplugin/all.vim
+execute 'source' g:CONF . '/ftplugin/all.vim'
+
 
 inoremap <Tab> <Esc>/#++#<CR>"_c4l
 

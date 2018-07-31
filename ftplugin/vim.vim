@@ -3,4 +3,4 @@ let comment = '"'
 let lencomm = strlen(comment)
 
 " source le fichier commun
-source $HOME/.vim/ftplugin/all.vim
+execute 'source' g:CONF . '/ftplugin/all.vim'

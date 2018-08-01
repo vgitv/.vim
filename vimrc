@@ -211,6 +211,23 @@ endfunction
 
 
 " ===========================================================================================================
+" OS SPECIFIC COMMANDS {{{
+" ===========================================================================================================
+
+" Unix or windows ? Config file location.
+if has('unix')
+    let g:OS = 'unix'
+    let g:CONF = $HOME . '/.vim'
+elseif has('win32') || has('win64')
+    let g:OS = 'windows'
+    let g:CONF = $HOME . '/vimfiles'
+    set guifont = Consolas:h10
+endif
+" }}}
+
+
+
+" ===========================================================================================================
 " MISCELLANEOUS {{{
 " ===========================================================================================================
 
@@ -259,16 +276,6 @@ augroup vimGroup
     autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
     autocmd BufEnter * let g:branch_name = GetBranchName()
 augroup END
-
-" Unix or windows ? Config file location.
-let temp = $HOME . '/.vim'
-if isdirectory(temp)
-    " Unix
-    let g:CONF = $HOME . '/.vim'
-else
-    " Windows
-    let g:CONF = $HOME . '/vimfiles'
-endif
 " }}}
 
 
@@ -311,7 +318,7 @@ set ignorecase          " Do case insensitive matching
 set smartcase           " Do smart case matching
 set incsearch           " Incremental search
 set autowrite           " Automatically save before commands like :next and :make
-"set hidden              " Hide buffers when abandoned (permet de changer de buffer quand non sauvegardé)
+set nohidden            " (no) Hide buffers when abandoned (permet de changer de buffer quand non sauvegardé)
 set mouse=a             " Enable mouse usage (all modes)
 set number              " line number
 set norelativenumber    " relative number
@@ -323,8 +330,8 @@ set shiftwidth=4
 set expandtab           " replace tabs by a number of spaces
 set smarttab
 
-set enc=utf-8
-set fenc=utf-8
+set encoding=utf-8
+set fileencoding=utf-8
 set termencoding=utf-8
 
 set tabpagemax=26       " max tab number

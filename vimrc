@@ -211,23 +211,6 @@ endfunction
 
 
 " ===========================================================================================================
-" OS SPECIFIC COMMANDS {{{
-" ===========================================================================================================
-
-" Unix or windows ? Config file location.
-if has('unix')
-    let g:OS = 'unix'
-    let g:CONF = $HOME . '/.vim'
-elseif has('win32') || has('win64')
-    let g:OS = 'windows'
-    let g:CONF = $HOME . '/vimfiles'
-    set guifont = Consolas:h10
-endif
-" }}}
-
-
-
-" ===========================================================================================================
 " MISCELLANEOUS {{{
 " ===========================================================================================================
 
@@ -281,31 +264,61 @@ augroup END
 
 
 " ===========================================================================================================
+" OS SPECIFIC COMMANDS {{{
+" ===========================================================================================================
+
+" Unix or windows ? Config file location.
+if has('unix')
+    let g:OS = 'unix'
+    let g:CONF = $HOME . '/.vim'
+    set t_Co=256
+    set background=dark
+    colorscheme vcolor
+    highlight ColorColumn ctermbg=232
+    highlight CursorLine  ctermbg=232
+    highlight Visual      ctermbg=237
+    highlight User1       ctermbg=154 ctermfg=232
+    highlight User2       ctermbg=38  ctermfg=231
+    highlight User3       ctermbg=214 ctermfg=232
+    highlight User4       ctermbg=196 ctermfg=231
+elseif has('win32') || has('win64')
+    let g:OS = 'windows'
+    let g:CONF = $HOME . '/vimfiles'
+    set guifont=Consolas:h11
+    set background=dark
+    colorscheme vcolor
+    highlight ColorColumn guibg=#000000
+endif
+" }}}
+
+
+
+" ===========================================================================================================
 " PARAMÈTRES DE BASE {{{
 " ===========================================================================================================
 " permet l'utilisation de 256 couleurs dans vim
-set t_Co=256
+" set t_Co=256
 
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
-set background=dark
+" set background=dark
 " coloration syntaxique
 " colorscheme molokai
-colorscheme vcolor
+" colorscheme vcolor
 " colorscheme Mustang
 " colorscheme gruvbox
 " colorscheme apprentice
 " colorscheme jellybeans
 
 " highlight ColorColumn ctermbg=Black
-highlight ColorColumn ctermbg=0
-highlight CursorLine ctermbg=232
-highlight Visual ctermbg=237
-highlight User1 ctermbg=154 ctermfg=232
-highlight User2 ctermbg=38  ctermfg=231
-highlight User3 ctermbg=214 ctermfg=232
-highlight User4 ctermbg=196 ctermfg=231
-" highlight ColorColumn ctermbg=darkgray
+" highlight ColorColumn ctermbg=0
+" highlight CursorLine ctermbg=232
+" highlight Visual ctermbg=237
+" highlight User1 ctermbg=154 ctermfg=232
+" highlight User2 ctermbg=38  ctermfg=231
+" highlight User3 ctermbg=214 ctermfg=232
+" highlight User4 ctermbg=196 ctermfg=231
+" highlight ColorColumn ctermbg=232
 " highlight WarningMsg cterm=bold ctermfg=red
 " highlight MatchParen cterm=bold ctermbg=green ctermfg=blue
 

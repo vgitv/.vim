@@ -288,6 +288,12 @@ elseif has('win32') || has('win64')
     set background=dark
     colorscheme vcolor
     highlight ColorColumn guibg=#000000
+    highlight CursorLine  guibg=#000000
+    highlight Visual      guibg=#0000ED
+    highlight User1       guibg=#00009A guifg=#000000
+    highlight User2       guibg=#000026 guifg=#0000E7
+    highlight User3       guibg=#0000D6 guifg=#000000
+    highlight User4       guibg=#0000C4 guifg=#0000E7
 endif
 " }}}
 

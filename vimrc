@@ -274,13 +274,13 @@ if has('unix')
     set t_Co=256
     set background=dark
     colorscheme vcolor
-    highlight ColorColumn ctermbg=232
-    highlight CursorLine  ctermbg=232
+    highlight ColorColumn ctermbg=16
+    highlight CursorLine  ctermbg=16
     highlight Visual      ctermbg=237
-    highlight User1       ctermbg=154 ctermfg=232
-    highlight User2       ctermbg=38  ctermfg=231
-    highlight User3       ctermbg=214 ctermfg=232
-    highlight User4       ctermbg=196 ctermfg=231
+    highlight User1       ctermbg=154 ctermfg=16
+    highlight User2       ctermbg=38  ctermfg=15
+    highlight User3       ctermbg=214 ctermfg=16
+    highlight User4       ctermbg=196 ctermfg=15
 elseif has('win32') || has('win64')
     let g:OS = 'windows'
     let g:CONF = $HOME . '/vimfiles'
@@ -289,11 +289,11 @@ elseif has('win32') || has('win64')
     colorscheme vcolor
     highlight ColorColumn guibg=#000000
     highlight CursorLine  guibg=#000000
-    highlight Visual      guibg=#0000ED
-    highlight User1       guibg=#00009A guifg=#000000
-    highlight User2       guibg=#000026 guifg=#0000E7
-    highlight User3       guibg=#0000D6 guifg=#000000
-    highlight User4       guibg=#0000C4 guifg=#0000E7
+    highlight Visual      guibg=#3A3A3A
+    highlight User1       guibg=#AFFF00 guifg=#000000
+    highlight User2       guibg=#00AFD7 guifg=#FFFFFF
+    highlight User3       guibg=#FFAF00 guifg=#000000
+    highlight User4       guibg=#FF0000 guifg=#FFFFFF
 endif
 " }}}
 

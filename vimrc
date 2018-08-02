@@ -258,37 +258,31 @@ if has('unix')
     set t_Co=256
     set background=dark
     colorscheme vcolor
+
+    execute 'highlight ColorColumn ctermbg='.black
+    execute 'highlight CursorLine  ctermbg='.black
+    execute 'highlight Visual      ctermbg='.grey
+    execute 'highlight User1       ctermbg='.yellow_green 'ctermfg='.black
+    execute 'highlight User2       ctermbg='.blue         'ctermfg='.white
+    execute 'highlight User3       ctermbg='.orange       'ctermfg='.black
+    execute 'highlight User4       ctermbg='.red          'ctermfg='.white
+
 elseif has('win32') || has('win64')
     let g:OS = 'windows'
     let g:CONF = $HOME . '/vimfiles'
     set guifont=Consolas:h11
     set background=dark
     colorscheme vcolor
-    " highlight ColorColumn guibg=#000000
-    " highlight CursorLine  guibg=#000000
-    " highlight Visual      guibg=#3A3A3A
-    " highlight User1       guibg=#AFFF00 guifg=#000000
-    " highlight User2       guibg=#00AFD7 guifg=#FFFFFF
-    " highlight User3       guibg=#FFAF00 guifg=#000000
-    " highlight User4       guibg=#FF0000 guifg=#FFFFFF
 
-    " Équivalent des couleurs en hexadécimal
-    let white = GetHex(white)
-    let black = GetHex(black)
-    let yellow_green = GetHex(yellow_green)
-    let blue = GetHex(blue)
-    let orange = GetHex(orange)
-    let red = GetHex(red)
-    let grey = GetHex(grey)
+    execute 'highlight ColorColumn guibg='.GetHex(black)
+    execute 'highlight CursorLine  guibg='.GetHex(black)
+    execute 'highlight Visual      guibg='.GetHex(grey)
+    execute 'highlight User1       guibg='.GetHex(yellow_green) 'guifg='.GetHex(black)
+    execute 'highlight User2       guibg='.GetHex(blue)         'guifg='.GetHex(white)
+    execute 'highlight User3       guibg='.GetHex(orange)       'guifg='.GetHex(black)
+    execute 'highlight User4       guibg='.GetHex(red)          'guifg='.GetHex(white)
 endif
 
-execute 'highlight ColorColumn ctermbg='.black
-execute 'highlight CursorLine  ctermbg='.black
-execute 'highlight Visual      ctermbg='.grey
-execute 'highlight User1       ctermbg='.yellow_green 'ctermfg='.black
-execute 'highlight User2       ctermbg='.blue         'ctermfg='.white
-execute 'highlight User3       ctermbg='.orange       'ctermfg='.black
-execute 'highlight User4       ctermbg='.red          'ctermfg='.white
 " }}}
 
 

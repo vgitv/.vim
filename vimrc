@@ -17,41 +17,7 @@ runtime! debian.vim
 " ===========================================================================================================
 
 " -----------------------------------------------------------------------------------------------------------
-" donne le nom de la branche (1ere version)
-" -----------------------------------------------------------------------------------------------------------
-" function GetBranchName()
-"     let l:branch = ''
-" 
-"     " À cet emplacement, est-on dans un dépot git ?
-"     let l:loc = expand('%:p:h')
-"     execute 'cd' . l:loc
-"     let l:cmd = 'git rev-parse --is-inside-work-tree'
-"     let l:git = systemlist(l:cmd)[0]
-" 
-"     " Le fichier est-il tracked ?
-"     let l:cmd = 'git ls-files --error-unmatch ' . expand('%:t')
-"     let l:tracked = systemlist(l:cmd)[0]
-" 
-"     if l:git ==? 'true'
-"         " on est dans un repo git
-"         let l:branch = systemlist('git symbolic-ref --short HEAD')[0]
-"         if l:tracked ==? expand('%:t')
-"             " tracked
-"             let l:branch = l:branch . ' ▴'
-"         else
-"             " untracked
-"             let l:branch = l:branch . ' ▾'
-"         endif
-"     else
-"         " on n'es pas dans un repo git
-"         let l:branch = ''
-"     endif
-" 
-"     return l:branch
-" endfunction
-
-" -----------------------------------------------------------------------------------------------------------
-" donne le nom de la branche (2eme version)
+" donne le nom de la branche
 " -----------------------------------------------------------------------------------------------------------
 function GetBranchName()
     let l:branch = ''
@@ -126,6 +92,14 @@ function HiGrp()
 endfunction
 
 " -----------------------------------------------------------------------------------------------------------
+" convert 255 colors of term to hex color
+" -----------------------------------------------------------------------------------------------------------
+function GetHex(num)
+    let l:col = ['000000', '800000', '008000', '808000', '000080', '800080', '008080', 'c0c0c0', '808080', 'ff0000', '00ff00', 'ffff00', '0000ff', 'ff00ff', '00ffff', 'ffffff', '000000', '00005f', '000087', '0000af', '0000d7', '0000ff', '005f00', '005f5f', '005f87', '005faf', '005fd7', '005fff', '008700', '00875f', '008787', '0087af', '0087d7', '0087ff', '00af00', '00af5f', '00af87', '00afaf', '00afd7', '00afff', '00d700', '00d75f', '00d787', '00d7af', '00d7d7', '00d7ff', '00ff00', '00ff5f', '00ff87', '00ffaf', '00ffd7', '00ffff', '5f0000', '5f005f', '5f0087', '5f00af', '5f00d7', '5f00ff', '5f5f00', '5f5f5f', '5f5f87', '5f5faf', '5f5fd7', '5f5fff', '5f8700', '5f875f', '5f8787', '5f87af', '5f87d7', '5f87ff', '5faf00', '5faf5f', '5faf87', '5fafaf', '5fafd7', '5fafff', '5fd700', '5fd75f', '5fd787', '5fd7af', '5fd7d7', '5fd7ff', '5fff00', '5fff5f', '5fff87', '5fffaf', '5fffd7', '5fffff', '870000', '87005f', '870087', '8700af', '8700d7', '8700ff', '875f00', '875f5f', '875f87', '875faf', '875fd7', '875fff', '878700', '87875f', '878787', '8787af', '8787d7', '8787ff', '87af00', '87af5f', '87af87', '87afaf', '87afd7', '87afff', '87d700', '87d75f', '87d787', '87d7af', '87d7d7', '87d7ff', '87ff00', '87ff5f', '87ff87', '87ffaf', '87ffd7', '87ffff', 'af0000', 'af005f', 'af0087', 'af00af', 'af00d7', 'af00ff', 'af5f00', 'af5f5f', 'af5f87', 'af5faf', 'af5fd7', 'af5fff', 'af8700', 'af875f', 'af8787', 'af87af', 'af87d7', 'af87ff', 'afaf00', 'afaf5f', 'afaf87', 'afafaf', 'afafd7', 'afafff', 'afd700', 'afd75f', 'afd787', 'afd7af', 'afd7d7', 'afd7ff', 'afff00', 'afff5f', 'afff87', 'afffaf', 'afffd7', 'afffff', 'd70000', 'd7005f', 'd70087', 'd700af', 'd700d7', 'd700ff', 'd75f00', 'd75f5f', 'd75f87', 'd75faf', 'd75fd7', 'd75fff', 'd78700', 'd7875f', 'd78787', 'd787af', 'd787d7', 'd787ff', 'd7af00', 'd7af5f', 'd7af87', 'd7afaf', 'd7afd7', 'd7afff', 'd7d700', 'd7d75f', 'd7d787', 'd7d7af', 'd7d7d7', 'd7d7ff', 'd7ff00', 'd7ff5f', 'd7ff87', 'd7ffaf', 'd7ffd7', 'd7ffff', 'ff0000', 'ff005f', 'ff0087', 'ff00af', 'ff00d7', 'ff00ff', 'ff5f00', 'ff5f5f', 'ff5f87', 'ff5faf', 'ff5fd7', 'ff5fff', 'ff8700', 'ff875f', 'ff8787', 'ff87af', 'ff87d7', 'ff87ff', 'ffaf00', 'ffaf5f', 'ffaf87', 'ffafaf', 'ffafd7', 'ffafff', 'ffd700', 'ffd75f', 'ffd787', 'ffd7af', 'ffd7d7', 'ffd7ff', 'ffff00', 'ffff5f', 'ffff87', 'ffffaf', 'ffffd7', 'ffffff', '080808', '121212', '1c1c1c', '262626', '303030', '3a3a3a', '444444', '4e4e4e', '585858', '626262', '6c6c6c', '767676', '808080', '8a8a8a', '949494', '9e9e9e', 'a8a8a8', 'b2b2b2', 'bcbcbc', 'c6c6c6', 'd0d0d0', 'dadada', 'e4e4e4', 'eeeeee']
+    return '#' . l:col[a:num]
+endfunction
+
+" -----------------------------------------------------------------------------------------------------------
 " toggle fold column
 " -----------------------------------------------------------------------------------------------------------
 function FoldColumnToggle()
@@ -166,14 +140,16 @@ endfunction
 " Status line
 " -----------------------------------------------------------------------------------------------------------
 function MyStatusLine()
-    if mode() ==? 'i'
+    if mode() ==? 'n'
+        let my_mode = '%1* NORMAL %*  '
+    elseif mode() ==? 'i'
         let my_mode = '%2* INSERT %*  '
     elseif mode() ==? 'v'
         let my_mode = '%3* VISUAL %*  '
     elseif mode() ==? 'R'
         let my_mode = '%4* REPLACE %*  '
     else
-        let my_mode = '%1* NORMAL %*  '
+        let my_mode = '%3* VISUAL %*  '
     endif
 
     let l:sep1 = " \u276f  "
@@ -267,6 +243,14 @@ augroup END
 " OS SPECIFIC COMMANDS {{{
 " ===========================================================================================================
 
+let white = 15
+let black = 16
+let yellow_green = 154
+let blue = 38
+let orange = 214
+let red = 196
+let grey = 237
+
 " Unix or windows ? Config file location.
 if has('unix')
     let g:OS = 'unix'
@@ -274,27 +258,37 @@ if has('unix')
     set t_Co=256
     set background=dark
     colorscheme vcolor
-    highlight ColorColumn ctermbg=16
-    highlight CursorLine  ctermbg=16
-    highlight Visual      ctermbg=237
-    highlight User1       ctermbg=154 ctermfg=16
-    highlight User2       ctermbg=38  ctermfg=15
-    highlight User3       ctermbg=214 ctermfg=16
-    highlight User4       ctermbg=196 ctermfg=15
 elseif has('win32') || has('win64')
     let g:OS = 'windows'
     let g:CONF = $HOME . '/vimfiles'
     set guifont=Consolas:h11
     set background=dark
     colorscheme vcolor
-    highlight ColorColumn guibg=#000000
-    highlight CursorLine  guibg=#000000
-    highlight Visual      guibg=#3A3A3A
-    highlight User1       guibg=#AFFF00 guifg=#000000
-    highlight User2       guibg=#00AFD7 guifg=#FFFFFF
-    highlight User3       guibg=#FFAF00 guifg=#000000
-    highlight User4       guibg=#FF0000 guifg=#FFFFFF
+    " highlight ColorColumn guibg=#000000
+    " highlight CursorLine  guibg=#000000
+    " highlight Visual      guibg=#3A3A3A
+    " highlight User1       guibg=#AFFF00 guifg=#000000
+    " highlight User2       guibg=#00AFD7 guifg=#FFFFFF
+    " highlight User3       guibg=#FFAF00 guifg=#000000
+    " highlight User4       guibg=#FF0000 guifg=#FFFFFF
+
+    " Équivalent des couleurs en hexadécimal
+    let white = GetHex(white)
+    let black = GetHex(black)
+    let yellow_green = GetHex(yellow_green)
+    let blue = GetHex(blue)
+    let orange = GetHex(orange)
+    let red = GetHex(red)
+    let grey = GetHex(grey)
 endif
+
+execute 'highlight ColorColumn ctermbg='.black
+execute 'highlight CursorLine  ctermbg='.black
+execute 'highlight Visual      ctermbg='.grey
+execute 'highlight User1       ctermbg='.yellow_green 'ctermfg='.black
+execute 'highlight User2       ctermbg='.blue         'ctermfg='.white
+execute 'highlight User3       ctermbg='.orange       'ctermfg='.black
+execute 'highlight User4       ctermbg='.red          'ctermfg='.white
 " }}}
 
 

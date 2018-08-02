@@ -152,8 +152,10 @@ function MyStatusLine()
         let my_mode = '%3* VISUAL %*  '
     endif
 
-    let l:sep1 = " \u276f  "
-    let l:sep2 = " \u276e  "
+    " let l:sep1 = " \u276f  "
+    " let l:sep2 = " \u276e  "
+    let l:sep1 = ' ❯  '
+    let l:sep2 = ' ❮  '
 
     " mode
     let line = my_mode
@@ -234,6 +236,7 @@ augroup vimGroup
     " ne pas insérer automatique un commentaire après une ligne commentée
     autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
     autocmd BufEnter * let g:branch_name = GetBranchName()
+    autocmd BufNewFile *.sh 0read ~/.vim/templates/skeleton.sh
 augroup END
 " }}}
 

@@ -7,7 +7,7 @@ Fonctions, OS-spécifiques commandes, commandes diverses, variables settings, ma
 Fichier _ftplugin/cpp.vim_ : fonction pour splitter la fenêtre (source + header) et inversement (mapping `<F3>`).
 
 ## indent
-Indentation python, fermeture de bloc avec : '#}'.
+Indentation python, fermeture de bloc avec : `#}`.
 
 ## Plugins
 
